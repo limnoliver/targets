@@ -145,6 +145,7 @@ To use <code>tar_option_set()</code> effectively, put it in your workflow's
     <pre class="usage"><span class='fu'>tar_option_set</span><span class='op'>(</span>
   tidy_eval <span class='op'>=</span> <span class='cn'>NULL</span>,
   packages <span class='op'>=</span> <span class='cn'>NULL</span>,
+  imports <span class='op'>=</span> <span class='cn'>NULL</span>,
   library <span class='op'>=</span> <span class='cn'>NULL</span>,
   envir <span class='op'>=</span> <span class='cn'>NULL</span>,
   format <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -177,6 +178,20 @@ the values of global objects.</p></td>
       <td><p>Character vector of packages to load right before
 the target builds. Use <code>tar_option_set()</code> to set packages
 globally for all subsequent targets you define.</p></td>
+    </tr>
+    <tr>
+      <th>imports</th>
+      <td><p>Character vector of package names to track
+global dependencies. For example, if you write
+<code>tar_option_set(imports = "yourAnalysisPackage")</code> early in <code>_targets.R</code>,
+then <code><a href='tar_make.html'>tar_make()</a></code> will automatically rerun or skip targets
+in response to changes to the R functions and objects defined in
+<code>yourAnalysisPackage</code>. Does not account for low-level compiled code
+such as C/C++ or Fortran. If you supply multiple packages,
+e.g. <code>tar_option_set(imports = c("p1", "p2"))</code>, then the objects in
+<code>p1</code> override the objects in <code>p2</code> if there are name conflicts.
+Similarly, objects in <code><a href='tar_option_get.html'>tar_option_get("envir")</a></code> override
+everything in <code><a href='tar_option_get.html'>tar_option_get("imports")</a></code>.</p></td>
     </tr>
     <tr>
       <th>library</th>
