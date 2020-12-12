@@ -163,6 +163,7 @@
 <li>Record package load errors in progress and metadata (<a href='https://github.com/wlandau/targets/issues/228'>#228</a>, <a href='https://github.com/psychelzh'>@psychelzh</a>).</li>
 <li>
 <code><a href="../reference/tar_renv.html">tar_renv()</a></code> now invokes <code>_targets.R</code> through a background process just like <code><a href="../reference/tar_outdated.html">tar_outdated()</a></code> etc. so it can account for more hidden packages (<a href='https://github.com/wlandau/targets/issues/224'>#224</a>, <a href='https://github.com/mattwarkentin'>@mattwarkentin</a>).</li>
+<li>Set <code>deployment</code> equal to <code>"main"</code> for all targets in <code><a href="../reference/tar_make.html">tar_make()</a></code>. This ensures <code><a href="../reference/tar_make.html">tar_make()</a></code> does not waste time waiting for nonexistent files to ship over a nonexistent network file system (NFS). <code><a href="../reference/tar_make_clustermq.html">tar_make_clustermq()</a></code> or <code><a href="../reference/tar_make_future.html">tar_make_future()</a></code> could use NFS, so they still leave <code>deployment</code> alone.</li>
 </ul>
 </div>
 </div>
