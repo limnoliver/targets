@@ -47,8 +47,10 @@
 
 
 <meta property="og:title" content="Execute code in a temporary directory. — tar_dir" />
-<meta property="og:description" content="Creates a new directory at tempfile() and runs code
-inside with withr::with_dir()" />
+<meta property="og:description" content="Runs code inside a tempfile() directory
+using withr::with_dir(). Handy for writing examples in
+targetopia packages
+(extensions to targets tailored to specific use cases)." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -132,8 +134,10 @@ inside with withr::with_dir()" />
     </div>
 
     <div class="ref-description">
-    <p>Creates a new directory at <code><a href='https://rdrr.io/r/base/tempfile.html'>tempfile()</a></code> and runs code
-inside with <code><a href='https://withr.r-lib.org/reference/with_dir.html'>withr::with_dir()</a></code></p>
+    <p>Runs code inside a <code><a href='https://rdrr.io/r/base/tempfile.html'>tempfile()</a></code> directory
+using <code><a href='https://withr.r-lib.org/reference/with_dir.html'>withr::with_dir()</a></code>. Handy for writing examples in
+<a href='https://wlandau.github.io/targetopia.html'>targetopia</a> packages
+(extensions to <code>targets</code> tailored to specific use cases).</p>
     </div>
 
     <pre class="usage"><span class='fu'>tar_dir</span><span class='op'>(</span><span class='va'>code</span><span class='op'>)</span></pre>
@@ -152,8 +156,8 @@ inside with <code><a href='https://withr.r-lib.org/reference/with_dir.html'>with
     <p>Return value of the user-defined code.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>tar_dir</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.create</a></span><span class='op'>(</span><span class='st'>"x"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span><span class='op'>(</span><span class='st'>"x"</span><span class='op'>)</span> <span class='co'># Should be false.</span>
+    <pre class="examples"><div class='input'><span class='fu'>tar_dir</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.create</a></span><span class='op'>(</span><span class='st'>"only_exists_in_tar_dir"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span><span class='op'>(</span><span class='st'>"only_exists_in_tar_dir"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
