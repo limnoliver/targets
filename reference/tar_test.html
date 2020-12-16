@@ -164,13 +164,15 @@ Useful for writing tests for
     <p><code>NULL</code> (invisibly).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>tar_test</span><span class='op'>(</span><span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='fu'>tar_test</span><span class='op'>(</span><span class='st'>"example test"</span>, <span class='op'>{</span>
   <span class='va'>testing_variable_cafecfcb</span> <span class='op'>&lt;-</span> <span class='st'>"only defined inside tar_test()"</span>
   <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.create</a></span><span class='op'>(</span><span class='st'>"only_exists_in_tar_test"</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in tar_test({    testing_variable_cafecfcb &lt;- "only defined inside tar_test()"    file.create("only_exists_in_tar_test")}): argument "code" is missing, with no default</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"testing_variable_cafecfcb"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span><span class='op'>(</span><span class='st'>"only_exists_in_tar_test"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+</div><div class='output co'>#&gt; ── <span style='color: #0000BB;font-weight: bold;'>Skip</span><span style='font-weight: bold;'> (???): example test</span><span> ────────────────────────────────────────────────────
+#&gt; Reason: empty test
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"testing_variable_cafecfcb"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span><span class='op'>(</span><span class='st'>"only_exists_in_tar_test"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
