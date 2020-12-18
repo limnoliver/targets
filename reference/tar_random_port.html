@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the file path of a target's stored value. — tar_path • targets</title>
+<title>Random TCP port — tar_random_port • targets</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,9 @@
 
 
 
-<meta property="og:title" content="Get the file path of a target's stored value. — tar_path" />
-<meta property="og:description" content="Get the file path of a target's stored value. Could be the
-target currently running in a pipeline or a target of your choice." />
+<meta property="og:title" content="Random TCP port — tar_random_port" />
+<meta property="og:description" content="Not a user-side function. Exported for infrastructure
+purposes only." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -126,84 +126,38 @@ target currently running in a pipeline or a target of your choice." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the file path of a target's stored value.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wlandau/targets/blob/master/R/tar_path.R'><code>R/tar_path.R</code></a></small>
-    <div class="hidden name"><code>tar_path.Rd</code></div>
+    <h1>Random TCP port</h1>
+    <small class="dont-index">Source: <a href='https://github.com/wlandau/targets/blob/master/R/utils_url.R'><code>R/utils_url.R</code></a></small>
+    <div class="hidden name"><code>tar_random_port.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get the file path of a target's stored value. Could be the
-target currently running in a pipeline or a target of your choice.</p>
+    <p>Not a user-side function. Exported for infrastructure
+purposes only.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tar_path</span><span class='op'>(</span>name <span class='op'>=</span> <span class='cn'>NULL</span>, default <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>tar_random_port</span><span class='op'>(</span>lower <span class='op'>=</span> <span class='fl'>49152L</span>, upper <span class='op'>=</span> <span class='fl'>65355L</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>name</th>
-      <td><p>Symbol, name of the target.
-If <code>NULL</code>, <code>tar_path()</code> returns the path of the target currently running
-in a pipeline.</p></td>
+      <th>lower</th>
+      <td><p>Integer of length 1, lowest possible port.</p></td>
     </tr>
     <tr>
-      <th>default</th>
-      <td><p>Character, value to return if <code>tar_path()</code>
-is called on its own outside a <code>targets</code> pipeline.
-Having a default lets users run things without <code><a href='tar_make.html'>tar_make()</a></code>,
-which helps peel back layers of code and troubleshoot bugs.</p></td>
+      <th>upper</th>
+      <td><p>Integer of length 1, highest possible port.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Character, file path to the target.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Call <code>tar_path(name = "your_target")</code> to get the file path
-of a selected target. Inside the command of a target, call
-<code>tar_path()</code> with no arguments to get the path to the target
-currently running. (Does not apply to dynamic files
-(<code>format = "file"</code>) because those paths are not known in advance.)
-If you call <code>tar_path()</code> outside a pipeline without specifying <code>name</code>,
-the return value is <code>default</code>.</p>
+    <p>A random port not likely to be used by another process.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>tar_path</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpjEBRuv/file8b1383dc3c7"</div><div class='input'><span class='fu'>tar_path</span><span class='op'>(</span><span class='va'>your_target</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "_targets/objects/your_target"</div><div class='input'><span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>returns_path</span>, <span class='fu'>tar_path</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; &lt;stem target&gt; 
-#&gt;   name: returns_path 
-#&gt;   command:
-#&gt;     tar_path() 
-#&gt;   format: rds 
-#&gt;   iteration method: vector 
-#&gt;   error mode: stop 
-#&gt;   memory mode: persistent 
-#&gt;   storage mode: main 
-#&gt;   retrieval mode: main 
-#&gt;   deploy to: worker 
-#&gt;   resources:
-#&gt;     list() 
-#&gt;   cue:
-#&gt;     mode: thorough
-#&gt;     command: TRUE
-#&gt;     depend: TRUE
-#&gt;     format: TRUE
-#&gt;     iteration: TRUE
-#&gt;     file: TRUE 
-#&gt;   packages:
-#&gt;     targets
-#&gt;     stats
-#&gt;     graphics
-#&gt;     grDevices
-#&gt;     utils
-#&gt;     datasets
-#&gt;     methods
-#&gt;     base 
-#&gt;   library:
-#&gt;     NULL</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>tar_random_port</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 60970</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

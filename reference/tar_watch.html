@@ -151,9 +151,10 @@ in <code><a href='tar_watch_ui.html'>tar_watch_ui()</a></code> and <code><a href
   level_separation <span class='op'>=</span> <span class='fl'>150</span>,
   height <span class='op'>=</span> <span class='st'>"700px"</span>,
   background <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  browse <span class='op'>=</span> <span class='cn'>TRUE</span>,
   host <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"shiny.host"</span>, <span class='st'>"127.0.0.1"</span><span class='op'>)</span>,
-  port <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"shiny.port"</span>, <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='tar_watch_port.html'>tar_watch_port</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>,
-  spinner <span class='op'>=</span> <span class='cn'>TRUE</span>
+  port <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"shiny.port"</span>, <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='tar_random_port.html'>tar_random_port</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -219,20 +220,24 @@ height of the <code>visNetwork</code> widget.</p></td>
 so you can still use the R console while the app is running.</p></td>
     </tr>
     <tr>
+      <th>browse</th>
+      <td><p>Whether to open the app in a browser when the app is ready.
+Only relevant if <code>background</code> is <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
       <th>host</th>
       <td><p>Character of length 1, IPv4 address to listen on.
-Ignored if <code>background</code> is <code>FALSE</code>.</p></td>
+Only relevant if <code>background</code> is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>port</th>
       <td><p>Positive integer of length 1, TCP port to listen on.
-Ignored if <code>background</code> is <code>FALSE</code>.</p></td>
+Only relevant if <code>background</code> is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
-      <th>spinner</th>
-      <td><p>show a command line spinner while <code>tar_watch()</code> is
-waiting for the background app to initialize. Only applies to
-<code>background = FALSE</code>.</p></td>
+      <th>verbose</th>
+      <td><p>whether to print a spinner and informative messages.
+Only relevant if <code>background</code> is <code>TRUE</code>.</p></td>
     </tr>
     </table>
 
