@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shiny app to watch the dependency graph. — tar_watch • targets</title>
+<title>Shiny app to watch the dependency graph (process version). — tar_watch_app • targets</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,10 @@
 
 
 
-<meta property="og:title" content="Shiny app to watch the dependency graph. — tar_watch" />
-<meta property="og:description" content="Launches a background process with a Shiny app
-that calls tar_visnetwork() every few seconds.
-To embed this app in other apps, use the Shiny module
-in tar_watch_ui() and tar_watch_server()." />
+<meta property="og:title" content="Shiny app to watch the dependency graph (process version). — tar_watch_app" />
+<meta property="og:description" content="User should directly call tar_watch() instead
+of tar_watch_app(). The latter is an internal utility
+that blocks the main process." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -128,19 +127,19 @@ in tar_watch_ui() and tar_watch_server()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Shiny app to watch the dependency graph.</h1>
+    <h1>Shiny app to watch the dependency graph (process version).</h1>
     <small class="dont-index">Source: <a href='https://github.com/wlandau/targets/blob/master/R/tar_watch.R'><code>R/tar_watch.R</code></a></small>
-    <div class="hidden name"><code>tar_watch.Rd</code></div>
+    <div class="hidden name"><code>tar_watch_app.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Launches a background process with a Shiny app
-that calls <code><a href='tar_visnetwork.html'>tar_visnetwork()</a></code> every few seconds.
-To embed this app in other apps, use the Shiny module
-in <code><a href='tar_watch_ui.html'>tar_watch_ui()</a></code> and <code><a href='tar_watch_server.html'>tar_watch_server()</a></code>.</p>
+    <p>User should directly call <code><a href='tar_watch.html'>tar_watch()</a></code> instead
+of <code>tar_watch_app()</code>. The latter is an internal utility
+that blocks the main process.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tar_watch</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>tar_watch_app</span><span class='op'>(</span>
+  dir <span class='op'>=</span> <span class='cn'>NULL</span>,
   seconds <span class='op'>=</span> <span class='fl'>5</span>,
   seconds_min <span class='op'>=</span> <span class='fl'>1</span>,
   seconds_max <span class='op'>=</span> <span class='fl'>100</span>,
@@ -149,11 +148,7 @@ in <code><a href='tar_watch_ui.html'>tar_watch_ui()</a></code> and <code><a href
   outdated <span class='op'>=</span> <span class='cn'>TRUE</span>,
   label <span class='op'>=</span> <span class='cn'>NULL</span>,
   level_separation <span class='op'>=</span> <span class='fl'>150</span>,
-  height <span class='op'>=</span> <span class='st'>"700px"</span>,
-  background <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  host <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"shiny.host"</span>, <span class='st'>"127.0.0.1"</span><span class='op'>)</span>,
-  port <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"shiny.port"</span>, <span class='fu'>targets</span><span class='fu'>::</span><span class='fu'><a href='tar_watch_port.html'>tar_watch_port</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>,
-  <span class='va'>...</span>
+  height <span class='op'>=</span> <span class='st'>"700px"</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -213,65 +208,12 @@ defaults to <code>150</code>.</p></td>
       <td><p>Character of length 1,
 height of the <code>visNetwork</code> widget.</p></td>
     </tr>
-    <tr>
-      <th>background</th>
-      <td><p>Logical, whether to run the app in a background process
-so you can still use the R console while the app is running.</p></td>
-    </tr>
-    <tr>
-      <th>host</th>
-      <td><p>Character of length 1, IPv4 address to listen on.
-Ignored if <code>background</code> is <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>port</th>
-      <td><p>Positive integer of length 1, TCP port to listen on.
-Ignored if <code>background</code> is <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Named arguments to <code><a href='https://rdrr.io/pkg/callr/man/r_bg.html'>callr::r_bg()</a></code>.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A handle to <code><a href='https://rdrr.io/pkg/callr/man/r_bg.html'>callr::r_bg()</a></code> background process running the app.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>A Shiny app.</p>
 
-    <p>The controls of the app are in the left panel.
-The <code>seconds</code> control is the number of seconds between
-refreshes of the graph, and the other settings match
-the arguments of <code><a href='tar_visnetwork.html'>tar_visnetwork()</a></code>.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span> <span class='co'># Only run interactively.</span>
-<span class='fu'><a href='tar_dir.html'>tar_dir</a></span><span class='op'>(</span><span class='op'>{</span>
-<span class='fu'><a href='tar_script.html'>tar_script</a></span><span class='op'>(</span><span class='op'>{</span>
-  <span class='va'>sleep_run</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
-  <span class='op'>}</span>
-  <span class='fu'><a href='tar_pipeline.html'>tar_pipeline</a></span><span class='op'>(</span>
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>settings</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>data1</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='va'>settings</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>data2</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='va'>settings</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>data3</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='va'>settings</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>model1</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='va'>data1</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='va'>data2</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='va'>data3</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>figure1</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='va'>model1</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>figure2</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>figure3</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='va'>model3</span><span class='op'>)</span><span class='op'>)</span>,
-    <span class='fu'><a href='tar_target.html'>tar_target</a></span><span class='op'>(</span><span class='va'>conclusions</span>, <span class='fu'>sleep_run</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>figure1</span>, <span class='va'>figure2</span>, <span class='va'>figure3</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-  <span class='op'>)</span>
-<span class='op'>}</span><span class='op'>)</span>
-<span class='co'># Launch the app in a background process.</span>
-<span class='fu'>tar_watch</span><span class='op'>(</span>seconds <span class='op'>=</span> <span class='fl'>10</span>, outdated <span class='op'>=</span> <span class='cn'>FALSE</span>, targets_only <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='co'># Run the pipeline.</span>
-<span class='fu'><a href='tar_make.html'>tar_make</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>}</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
